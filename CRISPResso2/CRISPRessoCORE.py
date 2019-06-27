@@ -1807,7 +1807,25 @@ def main():
                     mod_pct = 100*n_mod/float(n_aligned)
 
                 vals = [ref_name]
-                vals.extend([str(x) for x in [round(unmod_pct,8),round(mod_pct,8),n_aligned,N_TOTAL,n_unmod,n_mod,n_discarded,n_insertion,n_deletion,n_substitution,n_only_insertion,n_only_deletion,n_only_substitution,n_insertion_and_deletion,n_insertion_and_substitution,n_deletion_and_substitution,n_insertion_and_deletion_and_substitution]])
+                for new_val in [round(unmod_pct,8),
+                              round(mod_pct,8),
+                              n_aligned,N_TOTAL,
+                              n_unmod,
+                              n_mod,
+                              n_discarded,
+                              n_insertion,
+                              n_deletion,
+                              n_substitution,
+                              n_only_insertion,
+                              n_only_deletion,
+                              n_only_substitution,
+                              n_insertion_and_deletion,
+                              n_insertion_and_substitution,
+                              n_deletion_and_substitution,
+                              n_insertion_and_deletion_and_substitution]:
+                    try: append(str(new_val))
+                    except: print (new_val)
+                               
                 outfile.write("\t".join(vals) + "\n")
 
         crispresso2_info['quant_of_editing_freq_filename'] = os.path.basename(quant_of_editing_freq_filename)
